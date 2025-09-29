@@ -125,19 +125,19 @@ const Products: React.FC = () => {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:gap-5 sm:grid-cols-3">
         <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
+          <div className="p-3 sm:p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">#</span>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 rounded-md flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-medium">#</span>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className="ml-3 sm:ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Total Products</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{products.length}</dd>
+                  <dt className="text-xs sm:text-sm font-medium text-gray-500 truncate">Total Products</dt>
+                  <dd className="text-lg sm:text-2xl font-semibold text-gray-900">{products.length}</dd>
                 </dl>
               </div>
             </div>
@@ -145,17 +145,17 @@ const Products: React.FC = () => {
         </div>
 
         <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
+          <div className="p-3 sm:p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">📦</span>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-md flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-medium">📦</span>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className="ml-3 sm:ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Total Inventory</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{getTotalInventory()}</dd>
+                  <dt className="text-xs sm:text-sm font-medium text-gray-500 truncate">Total Inventory</dt>
+                  <dd className="text-lg sm:text-2xl font-semibold text-gray-900">{getTotalInventory()}</dd>
                 </dl>
               </div>
             </div>
@@ -163,17 +163,17 @@ const Products: React.FC = () => {
         </div>
 
         <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
+          <div className="p-3 sm:p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">$</span>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-md flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-medium">$</span>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className="ml-3 sm:ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Inventory Value</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">${getTotalValue().toFixed(2)}</dd>
+                  <dt className="text-xs sm:text-sm font-medium text-gray-500 truncate">Inventory Value</dt>
+                  <dd className="text-lg sm:text-2xl font-semibold text-gray-900">${getTotalValue().toFixed(2)}</dd>
                 </dl>
               </div>
             </div>
@@ -221,40 +221,40 @@ const Products: React.FC = () => {
 
       {/* Products Grid */}
       <div className="bg-white shadow rounded-lg">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+        <div className="px-4 py-4 sm:py-5 sm:p-6">
+          <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900 mb-3 sm:mb-4">
             Product Catalog ({filteredProducts.length} products)
           </h3>
           
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="border border-gray-200 rounded-lg p-4 hover:border-gray-300">
+              <div key={product.id} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:border-gray-300">
                 <div className="flex justify-between items-start mb-2">
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-medium text-gray-900 truncate">{product.name}</h4>
-                    <p className="text-xs text-gray-500">{product.sku}</p>
+                    <p className="text-xs text-gray-500 truncate">{product.sku}</p>
                   </div>
                   <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                     product.inventory > 20 ? 'bg-green-100 text-green-800' :
                     product.inventory > 10 ? 'bg-yellow-100 text-yellow-800' :
                     'bg-red-100 text-red-800'
                   }`}>
-                    {product.inventory} in stock
+                    {product.inventory}
                   </span>
                 </div>
                 
                 <div className="space-y-1">
-                  <p className="text-lg font-semibold text-gray-900">${product.price.toFixed(2)}</p>
-                  <p className="text-sm text-gray-600 capitalize">{product.category}</p>
+                  <p className="text-base sm:text-lg font-semibold text-gray-900">${product.price.toFixed(2)}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 capitalize">{product.category}</p>
                   {product.description && (
                     <p className="text-xs text-gray-500 line-clamp-2">{product.description}</p>
                   )}
                 </div>
                 
-                <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-100">
                   <div className="flex justify-between text-xs text-gray-500">
-                    <span>SKU: {product.sku}</span>
-                    <span>Value: ${(product.price * product.inventory).toFixed(2)}</span>
+                    <span className="truncate">SKU: {product.sku}</span>
+                    <span className="truncate ml-2">${(product.price * product.inventory).toFixed(2)}</span>
                   </div>
                 </div>
               </div>

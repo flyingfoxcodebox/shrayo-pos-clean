@@ -121,26 +121,26 @@ const Sales: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
         {/* Products */}
         <div className="lg:col-span-2">
           <div className="bg-white shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Products</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="px-4 py-4 sm:py-5 sm:p-6">
+              <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900 mb-3 sm:mb-4">Products</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {products.map((product) => (
-                  <div key={product.id} className="border border-gray-200 rounded-lg p-4 hover:border-gray-300">
+                  <div key={product.id} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:border-gray-300">
                     <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <h4 className="text-sm font-medium text-gray-900">{product.name}</h4>
-                        <p className="text-xs text-gray-500">{product.sku} • {product.category}</p>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium text-gray-900 truncate">{product.name}</h4>
+                        <p className="text-xs text-gray-500 truncate">{product.sku} • {product.category}</p>
                         <p className="text-sm font-semibold text-gray-900 mt-1">${product.price.toFixed(2)}</p>
                         <p className="text-xs text-gray-500">Stock: {product.inventory}</p>
                       </div>
                       <button
                         onClick={() => addToCart(product)}
                         disabled={product.inventory === 0}
-                        className="ml-2 px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                        className="ml-2 px-2 sm:px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed touch-manipulation"
                       >
                         Add
                       </button>
@@ -153,15 +153,15 @@ const Sales: React.FC = () => {
         </div>
 
         {/* Cart & Checkout */}
-        <div className="space-y-6">
+        <div className="space-y-4 lg:space-y-6">
           {/* Customer Selection */}
           <div className="bg-white shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Customer</h3>
+            <div className="px-4 py-4 sm:py-5 sm:p-6">
+              <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900 mb-3 sm:mb-4">Customer</h3>
               <select
                 value={selectedCustomer}
                 onChange={(e) => setSelectedCustomer(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-base"
               >
                 <option value="">Walk-in Customer</option>
                 {customers.map((customer) => (
@@ -175,35 +175,35 @@ const Sales: React.FC = () => {
 
           {/* Cart */}
           <div className="bg-white shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Cart</h3>
+            <div className="px-4 py-4 sm:py-5 sm:p-6">
+              <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900 mb-3 sm:mb-4">Cart</h3>
               {cart.length === 0 ? (
                 <p className="text-gray-500 text-sm">No items in cart</p>
               ) : (
                 <div className="space-y-3">
                   {cart.map((item) => (
                     <div key={item.product.id} className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">{item.product.name}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">{item.product.name}</p>
                         <p className="text-xs text-gray-500">${item.product.price.toFixed(2)} each</p>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                          className="w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 touch-manipulation"
                         >
                           -
                         </button>
-                        <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
+                        <span className="text-sm font-medium w-6 sm:w-8 text-center">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                          className="w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 touch-manipulation"
                         >
                           +
                         </button>
                         <button
                           onClick={() => removeFromCart(item.product.id)}
-                          className="ml-2 text-red-600 hover:text-red-800 text-xs"
+                          className="ml-1 sm:ml-2 text-red-600 hover:text-red-800 text-xs touch-manipulation"
                         >
                           Remove
                         </button>
@@ -282,7 +282,7 @@ const Sales: React.FC = () => {
 
                 <button
                   onClick={processSale}
-                  className="w-full mt-6 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full mt-4 sm:mt-6 bg-green-600 text-white py-3 sm:py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-base font-medium touch-manipulation"
                 >
                   Process Sale
                 </button>

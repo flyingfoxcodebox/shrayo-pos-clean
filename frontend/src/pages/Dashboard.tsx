@@ -28,22 +28,22 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.name} className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
+            <div className="p-3 sm:p-5">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">$</span>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 rounded-md flex items-center justify-center">
+                    <span className="text-white text-xs sm:text-sm font-medium">$</span>
                   </div>
                 </div>
-                <div className="ml-5 w-0 flex-1">
+                <div className="ml-3 sm:ml-5 w-0 flex-1">
                   <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">{stat.name}</dt>
+                    <dt className="text-xs sm:text-sm font-medium text-gray-500 truncate">{stat.name}</dt>
                     <dd className="flex items-baseline">
-                      <div className="text-2xl font-semibold text-gray-900">{stat.value}</div>
-                      <div className={`ml-2 flex items-baseline text-sm font-semibold ${
+                      <div className="text-lg sm:text-2xl font-semibold text-gray-900">{stat.value}</div>
+                      <div className={`ml-1 sm:ml-2 flex items-baseline text-xs sm:text-sm font-semibold ${
                         stat.changeType === 'positive' ? 'text-green-600' : 
                         stat.changeType === 'negative' ? 'text-red-600' : 'text-gray-600'
                       }`}>
@@ -60,24 +60,24 @@ const Dashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <div className="bg-white shadow rounded-lg">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">Quick Actions</h3>
-          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="px-4 py-4 sm:py-5 sm:p-6">
+          <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900">Quick Actions</h3>
+          <div className="mt-4 sm:mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <Link
               to="/sales"
-              className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
+              className="relative group bg-white p-4 sm:p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
-                <span className="rounded-lg inline-flex p-3 bg-blue-50 text-blue-700 ring-4 ring-white">
-                  <span className="text-2xl">🛒</span>
+                <span className="rounded-lg inline-flex p-2 sm:p-3 bg-blue-50 text-blue-700 ring-2 sm:ring-4 ring-white">
+                  <span className="text-xl sm:text-2xl">🛒</span>
                 </span>
               </div>
-              <div className="mt-8">
-                <h3 className="text-lg font-medium">
+              <div className="mt-4 sm:mt-8">
+                <h3 className="text-base sm:text-lg font-medium">
                   <span className="absolute inset-0" aria-hidden="true" />
                   New Sale
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
                   Start a new transaction and process a customer order.
                 </p>
               </div>
@@ -85,19 +85,19 @@ const Dashboard: React.FC = () => {
 
             <Link
               to="/customers"
-              className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
+              className="relative group bg-white p-4 sm:p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
-                <span className="rounded-lg inline-flex p-3 bg-green-50 text-green-700 ring-4 ring-white">
-                  <span className="text-2xl">👥</span>
+                <span className="rounded-lg inline-flex p-2 sm:p-3 bg-green-50 text-green-700 ring-2 sm:ring-4 ring-white">
+                  <span className="text-xl sm:text-2xl">👥</span>
                 </span>
               </div>
-              <div className="mt-8">
-                <h3 className="text-lg font-medium">
+              <div className="mt-4 sm:mt-8">
+                <h3 className="text-base sm:text-lg font-medium">
                   <span className="absolute inset-0" aria-hidden="true" />
                   Manage Customers
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
                   View and add new customers to your system.
                 </p>
               </div>
@@ -105,19 +105,19 @@ const Dashboard: React.FC = () => {
 
             <Link
               to="/products"
-              className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
+              className="relative group bg-white p-4 sm:p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
-                <span className="rounded-lg inline-flex p-3 bg-purple-50 text-purple-700 ring-4 ring-white">
-                  <span className="text-2xl">🍷</span>
+                <span className="rounded-lg inline-flex p-2 sm:p-3 bg-purple-50 text-purple-700 ring-2 sm:ring-4 ring-white">
+                  <span className="text-xl sm:text-2xl">🍷</span>
                 </span>
               </div>
-              <div className="mt-8">
-                <h3 className="text-lg font-medium">
+              <div className="mt-4 sm:mt-8">
+                <h3 className="text-base sm:text-lg font-medium">
                   <span className="absolute inset-0" aria-hidden="true" />
                   View Products
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
                   Browse your liquor inventory and product catalog.
                 </p>
               </div>
