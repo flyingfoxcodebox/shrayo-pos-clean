@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PaymentModal from '../components/PaymentModal'
 
 interface Product {
   id: string
@@ -22,6 +23,7 @@ const Sales: React.FC = () => {
   const [discount, setDiscount] = useState<number>(0)
   const [tax, setTax] = useState<number>(8.5) // 8.5% tax rate
   const [paymentMethod, setPaymentMethod] = useState<string>('cash')
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   // Mock products data
   const products: Product[] = [
@@ -87,9 +89,17 @@ const Sales: React.FC = () => {
   const processSale = () => {
     if (cart.length === 0) return
 
+    if (paymentMethod === 'card') {
+      setShowPaymentModal(true)
+    } else {
+      completeTransaction()
+    }
+  }
+
+  const completeTransaction = (transactionId?: string) => {
     // In a real app, this would send to backend
     const transaction = {
-      id: `TXN-${Date.now()}`,
+      id: transactionId || `TXN-${Date.now()}`,
       customer: selectedCustomer || 'Walk-in Customer',
       items: cart,
       subtotal: getSubtotal(),
@@ -109,6 +119,7 @@ const Sales: React.FC = () => {
     setCart([])
     setSelectedCustomer('')
     setDiscount(0)
+    setShowPaymentModal(false)
     navigate('/sales-history')
   }
 
@@ -284,13 +295,23 @@ const Sales: React.FC = () => {
                   onClick={processSale}
                   className="w-full mt-4 sm:mt-6 bg-green-600 text-white py-3 sm:py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-base font-medium touch-manipulation"
                 >
-                  Process Sale
+                  {paymentMethod === 'card' ? 'Process Card Payment' : 'Process Sale'}
                 </button>
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        onSuccess={completeTransaction}
+        amount={getTotal()}
+        customer={selectedCustomer || 'Walk-in Customer'}
+        items={cart}
+      />
     </div>
   )
 }
