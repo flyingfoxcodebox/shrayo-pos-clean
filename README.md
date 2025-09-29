@@ -1,1 +1,0 @@
-"# Shrayo POS Clean" 
